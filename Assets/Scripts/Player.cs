@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
         if (IsTouchingWallOnTheLeft() && Input.GetKeyDown(KeyCode.C))
         {
             rb.gravityScale = 10;
-            rb.linearVelocity = new Vector2(5 - rb.linearVelocity.x, jumpHight);
+            rb.linearVelocity = new Vector2((5 - rb.linearVelocity.x), jumpHight);
         }
 
     }
