@@ -53,9 +53,7 @@ public class Player : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {     
-
-
+    {
         // poruszanie siê prawo-lewo
         float x = Input.GetAxisRaw("Horizontal");
         // cancelowanie ruchu w œcianê podczas wallJumpa
@@ -85,13 +83,12 @@ public class Player : MonoBehaviour
         {
             jumpTimeCounter -= Time.deltaTime;
 
-            if (coyoteTimeCounter > 0f)
+            if (coyoteTimeCounter > 0f || IsGrounded())
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpHight);
                 jumpTimeCounter = 0;
             }
         }
-
 
         // zeœlizgiwanie siê ze œcian
         if (IsTouchingWallOnTheLeft() || IsTouchingWallOnTheRight())
