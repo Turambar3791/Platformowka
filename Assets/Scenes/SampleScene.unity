@@ -947,6 +947,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9108eb2afad248945aa761fd9d0b6422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  speed: 7
+  temp: 10
+  jumpHight: 20
+  jumpTime: 0.35
   groundCheck: {fileID: 354637590}
   wallCheckLeft: {fileID: 1548954009}
   wallCheckRight: {fileID: 1743035360}

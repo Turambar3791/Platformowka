@@ -1,17 +1,30 @@
 using UnityEngine;
 
 public class Player : MonoBehaviour
-{
-    private Vector2 moveDelta;
-    private float fixTimeMovement = 0.25f;
-    private float jumpHight = 25;
+{ 
+    // poruszanie siê
+    private float speed = 8;
     private Rigidbody2D rb;
+
+    // skakanie
+    [SerializeField] private float jumpHight = 12;
+    [SerializeField] private float jumpTime = 0.5f;
+    private float jumpTimeCounter;
+
+    // czas kojota
+    [SerializeField] private float coyoteTime = 0.5f;
+    private float coyoteTimeCounter;
+
+    // kolizje
     [SerializeField] Transform groundCheck;
     [SerializeField] Transform wallCheckLeft;
     [SerializeField] Transform wallCheckRight;
     private BoxCollider2D groundCheckColl;
     private BoxCollider2D wallCheckLeftColl;
     private BoxCollider2D wallCheckRightColl;
+
+    // pauzowanie
+    private bool isPaused = false;
 
     private void Start()
     {
@@ -21,8 +34,28 @@ public class Player : MonoBehaviour
         wallCheckRightColl = wallCheckRight.GetComponent<BoxCollider2D>();
     }
 
+    private void Update()
+    {
+        // pauzowanie i odpauzowywanie
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!isPaused)
+            {
+                Time.timeScale = 0;
+                isPaused = true;
+            }
+            else
+            {
+                Time.timeScale = 1;
+                isPaused = false;
+            }
+        }
+    }
+
     private void FixedUpdate()
     {     
+
+
         // poruszanie siê prawo-lewo
         float x = Input.GetAxisRaw("Horizontal");
         // cancelowanie ruchu w œcianê podczas wallJumpa
@@ -30,18 +63,40 @@ public class Player : MonoBehaviour
         {
             x = 0;
         }
-        moveDelta = new Vector2(x, 0);
-        transform.Translate(moveDelta * fixTimeMovement);
-        
-        // skakanie
-        if (Input.GetKeyDown(KeyCode.C) && IsGrounded())
+        rb.linearVelocity = new Vector2(x * speed, rb.linearVelocity.y);
+
+        // czas kojota
+        if (!IsGrounded())
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpHight);
+            coyoteTimeCounter -= Time.deltaTime;
         }
+        else
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+
+        // skakanie
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            jumpTimeCounter = jumpTime;
+        }
+
+        if (jumpTimeCounter > 0)
+        {
+            jumpTimeCounter -= Time.deltaTime;
+
+            if (coyoteTimeCounter > 0f)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpHight);
+                jumpTimeCounter = 0;
+            }
+        }
+
 
         // zeœlizgiwanie siê ze œcian
         if (IsTouchingWallOnTheLeft() || IsTouchingWallOnTheRight())
         {
+            jumpTimeCounter = 0;
             rb.gravityScale = 6;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
         }
@@ -54,9 +109,15 @@ public class Player : MonoBehaviour
         if (IsTouchingWallOnTheLeft() && Input.GetKeyDown(KeyCode.C))
         {
             rb.gravityScale = 10;
-            rb.linearVelocity = new Vector2((5 - rb.linearVelocity.x), jumpHight);
+            rb.linearVelocity = new Vector2(1, 1) * jumpHight;
         }
 
+        if (IsTouchingWallOnTheRight() && Input.GetKeyDown(KeyCode.C))
+        {
+            rb.gravityScale = 10;
+            rb.linearVelocity = new Vector2(-1, 1) * jumpHight;
+        }
+        
     }
 
     private bool IsGrounded()
@@ -65,12 +126,12 @@ public class Player : MonoBehaviour
     }
 
     private bool IsTouchingWallOnTheLeft()
-    { 
-        return wallCheckLeftColl.IsTouchingLayers(LayerMask.GetMask("Wall"));
+    {
+        return wallCheckLeftColl.IsTouchingLayers(LayerMask.GetMask("Ground"));
     }
 
     private bool IsTouchingWallOnTheRight()
-    {
-        return wallCheckRightColl.IsTouchingLayers(LayerMask.GetMask("Wall"));
+    { 
+        return wallCheckRightColl.IsTouchingLayers(LayerMask.GetMask("Ground"));
     }
 }
