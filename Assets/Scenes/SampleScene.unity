@@ -1090,6 +1090,8 @@ MonoBehaviour:
   groundCheck: {fileID: 354637590}
   wallCheckLeft: {fileID: 1548954009}
   wallCheckRight: {fileID: 1743035360}
+  dashForce: 40
+  dashTime: 0.08
 --- !u!61 &1672222591
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1183,7 +1185,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 7152930139536384079, guid: 7d832a28760e16c47908450c3a091335, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

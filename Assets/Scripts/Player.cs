@@ -1,10 +1,14 @@
 using UnityEngine;
 
 public class Player : MonoBehaviour
-{ 
+{
     // poruszanie siê
     private float speed = 8;
     private Rigidbody2D rb;
+
+    // flipowanie
+    private bool isFacingRight = true;
+    private SpriteRenderer sprite;
 
     // skakanie
     [SerializeField] private float jumpHight = 12;
@@ -23,6 +27,11 @@ public class Player : MonoBehaviour
     private BoxCollider2D wallCheckLeftColl;
     private BoxCollider2D wallCheckRightColl;
 
+    // dash
+    [SerializeField] private float dashForce = 2f;
+    [SerializeField] private float dashTime = 1f;
+    private float dashTimeCounter;
+
     // pauzowanie
     private bool isPaused = false;
 
@@ -32,6 +41,7 @@ public class Player : MonoBehaviour
         groundCheckColl = groundCheck.GetComponent<BoxCollider2D>();
         wallCheckLeftColl = wallCheckLeft.GetComponent<BoxCollider2D>();
         wallCheckRightColl = wallCheckRight.GetComponent<BoxCollider2D>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -62,6 +72,16 @@ public class Player : MonoBehaviour
             x = 0;
         }
         rb.linearVelocity = new Vector2(x * speed, rb.linearVelocity.y);
+
+        // flip
+        if (x < 0 && isFacingRight)
+        {
+            Flip();
+        }
+        else if (x > 0 && !isFacingRight)
+        {
+            Flip();
+        }
 
         // czas kojota
         if (!IsGrounded())
@@ -114,7 +134,26 @@ public class Player : MonoBehaviour
             rb.gravityScale = 10;
             rb.linearVelocity = new Vector2(-1, 1) * jumpHight;
         }
-        
+
+
+        // dash
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            dashTimeCounter = dashTime;
+        }
+
+        if (dashTimeCounter > 0)
+        {
+            if (isFacingRight)
+            {
+                rb.linearVelocity = new Vector2(dashForce, 0);
+            }
+            else
+            {
+                rb.linearVelocity = new Vector2(-dashForce, 0);
+            }
+            dashTimeCounter -= Time.deltaTime;
+        }
     }
 
     private bool IsGrounded()
@@ -130,5 +169,11 @@ public class Player : MonoBehaviour
     private bool IsTouchingWallOnTheRight()
     { 
         return wallCheckRightColl.IsTouchingLayers(LayerMask.GetMask("Ground"));
+    }
+
+    private void Flip()
+    { 
+        sprite.flipX = isFacingRight;
+        isFacingRight = !isFacingRight;
     }
 }
