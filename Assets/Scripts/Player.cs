@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -11,15 +12,18 @@ public class Player : MonoBehaviour
     private SpriteRenderer sprite;
 
     // skakanie
+    [Header("Skakanie")]
     [SerializeField] private float jumpHight = 12;
     [SerializeField] private float jumpTime = 0.5f;
     private float jumpTimeCounter;
 
     // czas kojota
+    [Header("Czas kojota")]
     [SerializeField] private float coyoteTime = 0.5f;
     private float coyoteTimeCounter;
 
     // kolizje
+    [Header("Kolizje")]
     [SerializeField] Transform groundCheck;
     [SerializeField] Transform wallCheckLeft;
     [SerializeField] Transform wallCheckRight;
@@ -28,9 +32,19 @@ public class Player : MonoBehaviour
     private BoxCollider2D wallCheckRightColl;
 
     // dash
+    [Header("Dash")]
     [SerializeField] private float dashForce = 2f;
     [SerializeField] private float dashTime = 1f;
     private float dashTimeCounter;
+
+    // drzwi
+    [Header("Drzwi")]
+    [SerializeField] private Transform door1;
+    [SerializeField] private Transform door2;
+    [SerializeField] private Transform door3;
+    private BoxCollider2D door1Coll;
+    private BoxCollider2D door2Coll;
+    private BoxCollider2D door3Coll;
 
     // pauzowanie
     private bool isPaused = false;
@@ -42,6 +56,9 @@ public class Player : MonoBehaviour
         wallCheckLeftColl = wallCheckLeft.GetComponent<BoxCollider2D>();
         wallCheckRightColl = wallCheckRight.GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
+        door1Coll = door1.GetComponent<BoxCollider2D>();
+        door2Coll = door2.GetComponent<BoxCollider2D>();
+        door3Coll = door3.GetComponent<BoxCollider2D>();
     }
 
     private void Update()
@@ -153,6 +170,22 @@ public class Player : MonoBehaviour
                 rb.linearVelocity = new Vector2(-dashForce, 0);
             }
             dashTimeCounter -= Time.deltaTime;
+        }
+
+        // drzwi
+        if (Input.GetKeyDown(KeyCode.UpArrow) && door1Coll.IsTouchingLayers(LayerMask.GetMask("Player")))
+        {
+            SceneManager.LoadSceneAsync(0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow) && door2Coll.IsTouchingLayers(LayerMask.GetMask("Player")))
+        {
+            Debug.Log("Wczytujê poziom 2");
+        }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow) && door3Coll.IsTouchingLayers(LayerMask.GetMask("Player")))
+        {
+            Debug.Log("Wczytujê poziom 3");
         }
     }
 
