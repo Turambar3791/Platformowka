@@ -3,8 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    // powciskane klawisze
+    private bool jumpKey = false;
+    private bool dashKey = false;
+
     // poruszanie siê
-    private float speed = 8;
+    [Header("Poruszanie siê")]
+    [SerializeField] private float speed = 8;
     private Rigidbody2D rb;
 
     // flipowanie
@@ -67,6 +72,17 @@ public class Player : MonoBehaviour
                 isPaused = false;
             }
         }
+
+        // naciskanie klawiszy
+        if (Input.GetKeyDown(KeyCode.C)) 
+        {
+            jumpKey = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            dashKey = true;
+        } 
     }
 
     private void FixedUpdate()
@@ -78,7 +94,7 @@ public class Player : MonoBehaviour
         {
             x = 0;
         }
-        rb.linearVelocity = new Vector2(x * speed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(x * speed * Time.deltaTime, rb.linearVelocity.y);
 
         // flip
         if (x < 0 && isFacingRight)
@@ -101,7 +117,7 @@ public class Player : MonoBehaviour
         }
 
         // skakanie
-        if (Input.GetKeyDown(KeyCode.C))
+        if (jumpKey)
         {
             jumpTimeCounter = jumpTime;
         }
@@ -112,7 +128,8 @@ public class Player : MonoBehaviour
 
             if (coyoteTimeCounter > 0f || IsGrounded())
             {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpHight);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpHight * Time.deltaTime);
+                jumpKey = false;
                 jumpTimeCounter = 0;
             }
         }
@@ -130,21 +147,23 @@ public class Player : MonoBehaviour
         }
 
         // wallJump
-        if (IsTouchingWallOnTheLeft() && Input.GetKeyDown(KeyCode.C))
+        if (IsTouchingWallOnTheLeft() && jumpKey)
         {
             rb.gravityScale = 10;
-            rb.linearVelocity = new Vector2(1, 1) * jumpHight;
+            rb.linearVelocity = new Vector2(1, 1) * jumpHight * Time.deltaTime;
+            jumpKey = false;
         }
 
-        if (IsTouchingWallOnTheRight() && Input.GetKeyDown(KeyCode.C))
+        if (IsTouchingWallOnTheRight() && jumpKey)
         {
             rb.gravityScale = 10;
-            rb.linearVelocity = new Vector2(-1, 1) * jumpHight;
+            rb.linearVelocity = new Vector2(-1, 1) * jumpHight * Time.deltaTime;
+            jumpKey = false;
         }
 
 
         // dash
-        if (Input.GetKeyDown(KeyCode.X) && dashCooldownCounter <= 0)
+        if (dashKey && dashCooldownCounter <= 0)
         {
             dashTimeCounter = dashTime;
             dashCooldownCounter = dashCooldown;
@@ -154,12 +173,13 @@ public class Player : MonoBehaviour
         {
             if (isFacingRight)
             {
-                rb.linearVelocity = new Vector2(dashForce, 0);
+                rb.linearVelocity = new Vector2(dashForce * Time.deltaTime, 0);
             }
             else
             {
-                rb.linearVelocity = new Vector2(-dashForce, 0);
+                rb.linearVelocity = new Vector2(-dashForce * Time.deltaTime, 0);
             }
+            dashKey = false;
             dashTimeCounter -= Time.deltaTime;
         } 
         
