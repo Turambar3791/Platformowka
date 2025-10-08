@@ -36,15 +36,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float dashForce = 2f;
     [SerializeField] private float dashTime = 1f;
     private float dashTimeCounter;
-
-    // drzwi
-    [Header("Drzwi")]
-    [SerializeField] private Transform door1;
-    [SerializeField] private Transform door2;
-    [SerializeField] private Transform door3;
-    private BoxCollider2D door1Coll;
-    private BoxCollider2D door2Coll;
-    private BoxCollider2D door3Coll;
+    [SerializeField] private float dashCooldown = 1f;
+    private float dashCooldownCounter;
 
     // pauzowanie
     private bool isPaused = false;
@@ -56,9 +49,6 @@ public class Player : MonoBehaviour
         wallCheckLeftColl = wallCheckLeft.GetComponent<BoxCollider2D>();
         wallCheckRightColl = wallCheckRight.GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
-        door1Coll = door1.GetComponent<BoxCollider2D>();
-        door2Coll = door2.GetComponent<BoxCollider2D>();
-        door3Coll = door3.GetComponent<BoxCollider2D>();
     }
 
     private void Update()
@@ -154,9 +144,10 @@ public class Player : MonoBehaviour
 
 
         // dash
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X) && dashCooldownCounter <= 0)
         {
             dashTimeCounter = dashTime;
+            dashCooldownCounter = dashCooldown;
         }
 
         if (dashTimeCounter > 0)
@@ -170,22 +161,11 @@ public class Player : MonoBehaviour
                 rb.linearVelocity = new Vector2(-dashForce, 0);
             }
             dashTimeCounter -= Time.deltaTime;
-        }
-
-        // drzwi
-        if (Input.GetKeyDown(KeyCode.UpArrow) && door1Coll.IsTouchingLayers(LayerMask.GetMask("Player")))
+        } 
+        
+        if (dashCooldownCounter > 0)
         {
-            SceneManager.LoadSceneAsync(0);
-        }
-
-        if (Input.GetKeyDown(KeyCode.UpArrow) && door2Coll.IsTouchingLayers(LayerMask.GetMask("Player")))
-        {
-            Debug.Log("Wczytujê poziom 2");
-        }
-
-        if (Input.GetKeyDown(KeyCode.UpArrow) && door3Coll.IsTouchingLayers(LayerMask.GetMask("Player")))
-        {
-            Debug.Log("Wczytujê poziom 3");
+            dashCooldownCounter -= Time.deltaTime;
         }
     }
 
