@@ -5,6 +5,7 @@ public class Transition : MonoBehaviour
 {
     [SerializeField] private string interactWith;
     [SerializeField] private string sceneName;
+    [SerializeField] private GameObject dialogueBoxToShow;
     private BoxCollider2D boxCollider;
 
     private void Start()
@@ -22,7 +23,7 @@ public class Transition : MonoBehaviour
             }
             else if (interactWith == "npc")
             {
-                
+                dialogueBoxToShow.SetActive(true);
             }           
 
         }
