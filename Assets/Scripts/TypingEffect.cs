@@ -6,21 +6,34 @@ public class TypingEffect : MonoBehaviour
 {
     [SerializeField] private float delay = 0.1f;
     private string fullText;
+    private string[] fullTextTab;
     private string currentText = "";
+    [SerializeField] private GameObject dialogueBox;
+    public bool isTextShowingFinished = false;
 
     void Start()
     {
         fullText = GetComponent<TextMesh>().text;
+        fullTextTab = fullText.Split(".");
         StartCoroutine(ShowText());
     }
 
     IEnumerator ShowText()
     {
-        for (int i = 0; i < fullText.Length; i++)
+        for (int i = 0; i < fullTextTab.Length; i++)
         {
-            currentText = fullText.Substring(0, i);
-            this.GetComponent<TextMesh>().text = currentText;
-            yield return new WaitForSeconds(delay);
+            for (int j = 0; j <= fullTextTab[i].Length; j++)
+            {
+                currentText = fullTextTab[i].Substring(0, j);
+                this.GetComponent<TextMesh>().text = currentText;
+                yield return new WaitForSeconds(delay);
+            }
+            yield return new WaitForSeconds(delay + 0.9f);
+            this.GetComponent<TextMesh>().text = "";
         }
+
+        isTextShowingFinished = true;
+        this.GetComponent<TextMesh>().text = fullText;
+        dialogueBox.SetActive(false);
     }
 }

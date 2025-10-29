@@ -161,7 +161,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21286230}
-  m_Text: "I've completed \nthe first area."
+  m_Text: "You've completed \nthe first area.\nI think you gonna die."
   m_OffsetZ: 0
   m_CharacterSize: 0.3
   m_LineSpacing: 1
@@ -169,7 +169,7 @@ TextMesh:
   m_Alignment: 0
   m_TabSize: 4
   m_FontSize: 0
-  m_FontStyle: 1
+  m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: 45ec184f16beb9e4fa354b059ee7ad2f, type: 3}
   m_Color:
@@ -236,6 +236,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   delay: 0.1
+  dialogueBox: {fileID: 21286230}
+  isTextShowingFinished: 0
 --- !u!1 &226580374
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,13 +520,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5534373643007332647, guid: 58f85966379ea9d4e85f55d0088ef4ac, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7808800626416163514, guid: 58f85966379ea9d4e85f55d0088ef4ac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.11
+      value: -9.01
       objectReference: {fileID: 0}
     - target: {fileID: 7808800626416163514, guid: 58f85966379ea9d4e85f55d0088ef4ac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.28
+      value: 11.11
       objectReference: {fileID: 0}
     - target: {fileID: 7808800626416163514, guid: 58f85966379ea9d4e85f55d0088ef4ac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -890,6 +896,7 @@ MonoBehaviour:
   interactWith: npc
   sceneName: 
   dialogueBoxToShow: {fileID: 21286230}
+  typingEffect: {fileID: 21286234}
 --- !u!1 &1034171900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1472,7 +1479,7 @@ PrefabInstance:
       objectReference: {fileID: 1991223026}
     - target: {fileID: 4943059226891245033, guid: 6fae2514d72f2a040b5ca533db5d7055, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.3681917
+      value: -4.268194
       objectReference: {fileID: 0}
     - target: {fileID: 4943059226891245033, guid: 6fae2514d72f2a040b5ca533db5d7055, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1480,11 +1487,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5976833847061507655, guid: 6fae2514d72f2a040b5ca533db5d7055, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.36819
+      value: -4.2681904
       objectReference: {fileID: 0}
     - target: {fileID: 5976833847061507655, guid: 6fae2514d72f2a040b5ca533db5d7055, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.00072
+      value: 7.83072
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
