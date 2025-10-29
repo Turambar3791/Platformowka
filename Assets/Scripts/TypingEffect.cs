@@ -28,12 +28,15 @@ public class TypingEffect : MonoBehaviour
                 this.GetComponent<TextMesh>().text = currentText;
                 yield return new WaitForSeconds(delay);
             }
-            yield return new WaitForSeconds(delay + 0.9f);
+            if (!((i + 1) == fullTextTab.Length))
+            {
+                yield return new WaitForSeconds(delay + 0.9f);
+            }
             this.GetComponent<TextMesh>().text = "";
         }
 
         isTextShowingFinished = true;
         this.GetComponent<TextMesh>().text = fullText;
-        dialogueBox.SetActive(false);
+        dialogueBox.SetActive(false);    
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Transition : MonoBehaviour
+public class Interaction : MonoBehaviour
 {
     [SerializeField] private string interactWith;
     [SerializeField] private string sceneName;
@@ -25,10 +25,6 @@ public class Transition : MonoBehaviour
             else if (interactWith == "npc")
             {
                 dialogueBoxToShow.SetActive(true);
-                if (typingEffect.isTextShowingFinished)
-                {
-                    StopAllCoroutines();
-                }
             }           
 
         }
