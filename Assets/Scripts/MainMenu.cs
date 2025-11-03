@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
     public void BtnNewGame()
     {
         SceneManager.LoadScene("Lobby");
+        SaveLoadSystem.Instance.NewGame();
     }
 
     public void BtnLoadGame()
