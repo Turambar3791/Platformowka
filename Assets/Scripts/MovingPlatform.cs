@@ -4,19 +4,26 @@ public class MovingPlatform : MonoBehaviour
 {
     private BoxCollider2D boxCollider;
     [SerializeField] private Transform platformToMove;
+    private Rigidbody2D rbPlatformToMove;
+    [SerializeField] private Transform startingPosition;
     [SerializeField] private Transform destination;
     [SerializeField] private float speed = 8;
 
     void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
+        rbPlatformToMove = platformToMove.GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (boxCollider.IsTouchingLayers(LayerMask.GetMask("Player"))) 
         {
-            platformToMove.transform.position = Vector2.MoveTowards(platformToMove.position, destination.position, speed * Time.deltaTime);
+            rbPlatformToMove.MovePosition(Vector2.MoveTowards(platformToMove.position, destination.position, speed * Time.deltaTime));
+        }
+        else
+        {
+            rbPlatformToMove.MovePosition(Vector2.MoveTowards(platformToMove.position, startingPosition.position, speed * Time.deltaTime));
         }
     }
 }

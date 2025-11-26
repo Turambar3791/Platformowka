@@ -2,28 +2,35 @@ using UnityEngine;
 
 public class MovingInLoopPlatform : MonoBehaviour
 {
+    private Rigidbody2D rb;
+    private BoxCollider2D boxCollider;
+    private Transform destination;
     [SerializeField] private Transform target1;
     [SerializeField] private Transform target2;
     [SerializeField] private float speed;
-    private BoxCollider2D boxCollider;
-    private BoxCollider2D target1Coll;
-    private BoxCollider2D target2Coll;
+    private GameObject player;
+    private Rigidbody2D rbPlayer;
 
     void Start()
     {
-        boxCollider = GetComponent<BoxCollider2D>();
-        target1Coll = target1.GetComponent<BoxCollider2D>();
-        target2Coll = target2.GetComponent<BoxCollider2D>();
+        rb = GetComponent<Rigidbody2D>();
+        destination = target2;
+        player = GameObject.FindGameObjectWithTag("Player");
+        rbPlayer = player.GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
-        transform.Translate(new Vector2(speed * Time.deltaTime, 0));
+        rb.MovePosition(Vector2.MoveTowards(transform.position, destination.position, speed * Time.deltaTime));
 
-        Debug.Log(boxCollider.IsTouching(target2Coll));
-        if (boxCollider.IsTouchingLayers(LayerMask.GetMask("Target2")))
+        if (Vector2.Distance(transform.position, destination.position) < 0.05f)
         {
-            speed = -speed;
+            destination = (destination == target2) ? target1 : target2;
+        }
+
+        if (boxCollider.IsTouchingLayers(LayerMask.GetMask("Player")))
+        {
+            rbPlayer.MovePosition(Vector2.MoveTowards(player.transform.position, destination.position, speed * Time.deltaTime));
         }
     }
 }
