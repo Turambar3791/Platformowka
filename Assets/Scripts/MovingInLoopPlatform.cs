@@ -33,11 +33,11 @@ public class MovingInLoopPlatform : MonoBehaviour
         {
             if (destination == target2)
             {
-                rbPlayer.linearVelocity = new Vector2((rbPlayer.linearVelocity.x + 200) * Time.deltaTime, rbPlayer.linearVelocity.y);
+                rbPlayer.linearVelocity = new Vector2((rbPlayer.linearVelocity.x + 300) * Time.deltaTime, rbPlayer.linearVelocity.y);
             }
             else
             {
-                rbPlayer.linearVelocity = new Vector2((rbPlayer.linearVelocity.x - 200) * Time.deltaTime, rbPlayer.linearVelocity.y);
+                rbPlayer.linearVelocity = new Vector2((rbPlayer.linearVelocity.x - 300) * Time.deltaTime, rbPlayer.linearVelocity.y);
             }
         }
     }
