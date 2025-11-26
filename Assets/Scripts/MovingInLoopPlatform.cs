@@ -15,6 +15,7 @@ public class MovingInLoopPlatform : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         destination = target2;
+        boxCollider = GetComponent<BoxCollider2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         rbPlayer = player.GetComponent<Rigidbody2D>();
     }
@@ -30,7 +31,14 @@ public class MovingInLoopPlatform : MonoBehaviour
 
         if (boxCollider.IsTouchingLayers(LayerMask.GetMask("Player")))
         {
-            rbPlayer.MovePosition(Vector2.MoveTowards(player.transform.position, destination.position, speed * Time.deltaTime));
+            if (destination == target2)
+            {
+                rbPlayer.linearVelocity = new Vector2((rbPlayer.linearVelocity.x + 200) * Time.deltaTime, rbPlayer.linearVelocity.y);
+            }
+            else
+            {
+                rbPlayer.linearVelocity = new Vector2((rbPlayer.linearVelocity.x - 200) * Time.deltaTime, rbPlayer.linearVelocity.y);
+            }
         }
     }
 }
