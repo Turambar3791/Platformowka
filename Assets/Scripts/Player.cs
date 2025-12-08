@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
         }
 
         // naciskanie klawiszy
-        if (Input.GetKeyDown(KeyCode.C)) 
+        if (Input.GetKeyDown(KeyCode.C) && (IsGrounded() || coyoteTimeCounter > 0f || remainingJumps > 0)) 
         {
             jumpKey = true;
         }
@@ -122,6 +122,28 @@ public class Player : MonoBehaviour
             remainingJumps = maxJumps;
         }
 
+        // wallJump
+        if (jumpKey)
+        {
+            if (IsTouchingWallOnTheLeft())
+            {
+                rb.gravityScale = 10;
+                rb.linearVelocity = new Vector2(1, 1) * jumpHight * Time.deltaTime;
+                remainingJumps = maxJumps - 1;
+                jumpKey = false;
+                return;
+            }
+
+            if (IsTouchingWallOnTheRight())
+            {
+                rb.gravityScale = 10;
+                rb.linearVelocity = new Vector2(-1, 1) * jumpHight * Time.deltaTime;
+                remainingJumps = maxJumps - 1;
+                jumpKey = false;
+                return;
+            }
+        }
+
         // zeœlizgiwanie siê ze œcian
         if (IsTouchingWallOnTheLeft() || IsTouchingWallOnTheRight())
         {
@@ -132,21 +154,6 @@ public class Player : MonoBehaviour
         else
         {
             rb.gravityScale = 10;
-        }
-
-        // wallJump
-        if (IsTouchingWallOnTheLeft() && jumpKey)
-        {
-            rb.gravityScale = 10;
-            rb.linearVelocity = new Vector2(1, 1) * jumpHight * Time.deltaTime;
-            jumpKey = false;
-        }
-
-        if (IsTouchingWallOnTheRight() && jumpKey)
-        {
-            rb.gravityScale = 10;
-            rb.linearVelocity = new Vector2(-1, 1) * jumpHight * Time.deltaTime;
-            jumpKey = false;
         }
 
         // skakanie
