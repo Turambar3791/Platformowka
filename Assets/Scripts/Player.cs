@@ -130,6 +130,19 @@ public class Player : MonoBehaviour
             remainingJumps = maxJumps;
         }
 
+        // zeœlizgiwanie siê ze œcian
+        if (IsTouchingWallOnTheLeft() || IsTouchingWallOnTheRight())
+        {
+            jumpTimeCounter = 0;
+            rb.gravityScale = 6;
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
+            remainingJumps += 1;
+        }
+        else
+        {
+            rb.gravityScale = 10;
+        }
+
         // wallJump
         if (jumpKey)
         {
@@ -150,19 +163,6 @@ public class Player : MonoBehaviour
                 jumpKey = false;
                 return;
             }
-        }
-
-        // zeœlizgiwanie siê ze œcian
-        if (IsTouchingWallOnTheLeft() || IsTouchingWallOnTheRight())
-        {
-            jumpTimeCounter = 0;
-            rb.gravityScale = 6;
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
-            remainingJumps += 1;
-        }
-        else
-        {
-            rb.gravityScale = 10;
         }
 
         // skakanie
