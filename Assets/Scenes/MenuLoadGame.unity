@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 61837327}
   - component: {fileID: 61837326}
   m_Layer: 5
-  m_Name: SaveTitle
+  m_Name: SaveTitle4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -472,7 +472,7 @@ GameObject:
   - component: {fileID: 464734801}
   - component: {fileID: 464734800}
   m_Layer: 5
-  m_Name: Continue
+  m_Name: Continue4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -604,7 +604,7 @@ GameObject:
   - component: {fileID: 510289736}
   - component: {fileID: 510289735}
   m_Layer: 5
-  m_Name: SaveTitle
+  m_Name: SaveTitle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -956,7 +956,7 @@ GameObject:
   - component: {fileID: 699919651}
   - component: {fileID: 699919650}
   m_Layer: 5
-  m_Name: NewGame
+  m_Name: NewGame2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1089,7 +1089,7 @@ GameObject:
   - component: {fileID: 774118243}
   - component: {fileID: 774118242}
   m_Layer: 5
-  m_Name: NewGame
+  m_Name: NewGame4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1765,7 +1765,7 @@ GameObject:
   - component: {fileID: 1084883958}
   - component: {fileID: 1084883957}
   m_Layer: 5
-  m_Name: SaveTitle
+  m_Name: SaveTitle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1902,6 +1902,7 @@ GameObject:
   - component: {fileID: 1118309365}
   - component: {fileID: 1118309369}
   - component: {fileID: 1118309368}
+  - component: {fileID: 1118309370}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2039,6 +2040,27 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1118309370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118309364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca7f4ad3195401f42828f7a3aaa51b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  buttons:
+  - {fileID: 1496659437}
+  - {fileID: 1300465241}
+  - {fileID: 1356339801}
+  - {fileID: 464734800}
+  btnContinue1: {fileID: 1496659437}
+  btnContinue2: {fileID: 1300465241}
+  btnContinue3: {fileID: 1356339801}
+  btnContinue4: {fileID: 464734800}
 --- !u!1 &1252458138
 GameObject:
   m_ObjectHideFlags: 0
@@ -2159,7 +2181,7 @@ GameObject:
   - component: {fileID: 1300465242}
   - component: {fileID: 1300465241}
   m_Layer: 5
-  m_Name: Continue
+  m_Name: Continue2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2428,7 +2450,7 @@ GameObject:
   - component: {fileID: 1356339802}
   - component: {fileID: 1356339801}
   m_Layer: 5
-  m_Name: Continue
+  m_Name: Continue3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2561,7 +2583,7 @@ GameObject:
   - component: {fileID: 1358846454}
   - component: {fileID: 1358846453}
   m_Layer: 5
-  m_Name: NewGame
+  m_Name: NewGame1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2694,7 +2716,7 @@ GameObject:
   - component: {fileID: 1359532074}
   - component: {fileID: 1359532073}
   m_Layer: 5
-  m_Name: NewGame
+  m_Name: NewGame3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2860,7 +2882,7 @@ GameObject:
   - component: {fileID: 1477241056}
   - component: {fileID: 1477241055}
   m_Layer: 5
-  m_Name: SaveTitle
+  m_Name: SaveTitle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2997,7 +3019,7 @@ GameObject:
   - component: {fileID: 1496659438}
   - component: {fileID: 1496659437}
   m_Layer: 5
-  m_Name: Continue
+  m_Name: Continue1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
