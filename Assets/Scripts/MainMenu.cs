@@ -14,7 +14,6 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("MenuKeybinds");
     }
 
-
     public void BtnQuit()
     {
         Application.Quit();
@@ -24,5 +23,20 @@ public class MainMenu : MonoBehaviour
     public void BtnBack()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void BtnStartNewGame(int slot)
+    {
+        SaveLoadSystem.Instance.SetSlot(slot);
+        SaveLoadSystem.Instance.NewGame();
+        SaveLoadSystem.Instance.SaveGame();
+        SceneManager.LoadScene("Lobby");
+    }
+
+    public void BtnContinue(int slot)
+    {
+        SaveLoadSystem.Instance.SetSlot(slot);
+        SaveLoadSystem.Instance.LoadGame();
+        SceneManager.LoadScene("Lobby");
     }
 }
