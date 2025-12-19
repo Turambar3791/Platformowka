@@ -4,30 +4,15 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     // MainMenu
-    public void BtnNewGame()
+    public void BtnStart()
     {
-        SceneManager.LoadScene("Lobby");
-        SaveLoadSystem.Instance.NewGame();
-    }
-
-    public void BtnLoadGame()
-    {
-        SaveLoadSystem.Instance.LoadGame();
-        if (!SaveLoadSystem.Instance.data.is3rdLevelCompleted)
-        {
-            SceneManager.LoadScene("Lobby");
-        } 
-        else
-        {
-            SceneManager.LoadScene("TheEnd");
-        }
+        SceneManager.LoadScene("MenuLoadGame");
     }
 
     public void BtnKeybinds()
     {
         SceneManager.LoadScene("MenuKeybinds");
     }
-
 
     public void BtnQuit()
     {
@@ -38,5 +23,21 @@ public class MainMenu : MonoBehaviour
     public void BtnBack()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void BtnStartNewGame(int slot)
+    {
+        SaveLoadSystem.Instance.SetSlot(slot);
+        SaveLoadSystem.Instance.NewGame();
+        SaveLoadSystem.Instance.data.isGameStarted = true;
+        SaveLoadSystem.Instance.SaveGame();
+        SceneManager.LoadScene("Lobby");
+    }
+
+    public void BtnContinue(int slot)
+    {
+        SaveLoadSystem.Instance.SetSlot(slot);
+        SaveLoadSystem.Instance.LoadGame();
+        SceneManager.LoadScene("Lobby");
     }
 }

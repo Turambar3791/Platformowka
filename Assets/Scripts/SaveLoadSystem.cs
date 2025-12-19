@@ -4,6 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
+    public bool isGameStarted = false;
     public bool is1stLevelCompeleted = false;
     public bool is2ndLevelCompleted = false;
     public bool is3rdLevelCompleted = false;
@@ -15,7 +16,8 @@ public class SaveLoadSystem : MonoBehaviour
     public static SaveLoadSystem Instance;
     public GameData data = new GameData();
 
-    private string savePath;
+    private int currentSlot = 1;
+    private string savePath => Application.persistentDataPath + $"/savegame_slot{currentSlot}.json";
 
     private void Awake()
     {
@@ -29,9 +31,6 @@ public class SaveLoadSystem : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
-        savePath = Application.persistentDataPath + "/savegame.json";
-        LoadGame();
     }
 
     public void SaveGame()
@@ -57,5 +56,11 @@ public class SaveLoadSystem : MonoBehaviour
     {
         data = new GameData();
         SaveGame();
+    }
+
+    public void SetSlot(int slot)
+    {
+        currentSlot = slot;
+        LoadGame();
     }
 }
