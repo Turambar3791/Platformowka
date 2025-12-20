@@ -439,7 +439,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Back
+  m_text: Back to menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b24a834760cad64a8df2cb29f77582c, type: 2}
   m_sharedMaterial: {fileID: 337953266493680895, guid: 4b24a834760cad64a8df2cb29f77582c, type: 2}
@@ -1408,3 +1408,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3212c126287e66c41818472973109e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  recordDistance: 0.2
