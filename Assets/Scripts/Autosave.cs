@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class Autosave : MonoBehaviour
 {
     [SerializeField] private GameObject autosaveIcon;
+    [SerializeField] private string sceneToLoad = "Lobby";
     private float rotationSpeed = 120f;
 
     void Start()
@@ -26,7 +27,7 @@ public class Autosave : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Lobby");
+            SceneManager.LoadScene(sceneToLoad);
         }
     }
 }
