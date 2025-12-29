@@ -17,7 +17,7 @@ public class Danger : MonoBehaviour
     {
         if (boxCollider.IsTouchingLayers(LayerMask.GetMask("Player")))
         {
-            GameObject.FindWithTag("Player").transform.SetPositionAndRotation(new Vector3(x, y, 0), transform.rotation);
+            GameObject.FindWithTag("Player").transform.SetPositionAndRotation(new Vector3(x, y, -2), transform.rotation);
         }
     }
 }

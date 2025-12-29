@@ -1,0 +1,5 @@
+-portal w lobby z którego się spada
+-credits
+-zmienić muzę ???
+-custom cursor ????
+-poprawić tą windo-platformę bo nie ma przycisku
