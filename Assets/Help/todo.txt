@@ -1,5 +1,3 @@
 -credits
--poprawić tą windo-platformę bo nie ma przycisku
--custom cursor
 
--zmienić muzę ???
+- create better ost???

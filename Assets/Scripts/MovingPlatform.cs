@@ -8,6 +8,7 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private Transform startingPosition;
     [SerializeField] private Transform destination;
     [SerializeField] private float speed = 8;
+    [SerializeField] private GameObject button;
 
     void Start()
     {
@@ -20,10 +21,12 @@ public class MovingPlatform : MonoBehaviour
         if (boxCollider.IsTouchingLayers(LayerMask.GetMask("Player"))) 
         {
             rbPlatformToMove.MovePosition(Vector2.MoveTowards(platformToMove.position, destination.position, speed * Time.deltaTime));
+            button.SetActive(false);
         }
         else
         {
             rbPlatformToMove.MovePosition(Vector2.MoveTowards(platformToMove.position, startingPosition.position, speed * Time.deltaTime));
+            button.SetActive(true);
         }
     }
 }
