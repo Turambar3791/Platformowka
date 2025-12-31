@@ -10,6 +10,9 @@ public class CreditsScroll : MonoBehaviour
     private TextMeshProUGUI textMeshProUGUI;
     private float endY;
 
+    [SerializeField] private GameObject textAboutSkip;
+    private bool isEscPressedOnce = false;
+
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -22,7 +25,13 @@ public class CreditsScroll : MonoBehaviour
     {
         rectTransform.anchoredPosition += Vector2.up * speed * Time.deltaTime;
 
-        if ((rectTransform.anchoredPosition.y > endY) || Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            isEscPressedOnce = true;
+            textAboutSkip.SetActive(true);
+        }
+
+        if ((rectTransform.anchoredPosition.y > endY) || (Input.GetKeyDown(KeyCode.Escape) && isEscPressedOnce))
         {
             Debug.Log("QUIT");
             Application.Quit();
