@@ -35,6 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Autosave.unity
     guid: 58734dacefb518041a18019f7c671b8d
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 7f34b7539d0d91141ad7300f26e9c5a6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

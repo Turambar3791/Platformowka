@@ -1,1 +1,22 @@
-Tadadasds
+<b><color=#8E163D><size=180%>OVERDRIVE 
+DELUSION</size>
+
+
+<size=120%>A Game By</size></color></b>
+Andrzej Szary
+
+
+<b><color=#8E163D>Programming</color></b>
+Andrzej Szary
+
+
+<b><color=#8E163D>Art</color></b>
+Andrzej Szary
+
+
+<b><color=#8E163D>Music</color></b>
+Andrzej Szary
+
+
+
+Thank you for playing!
