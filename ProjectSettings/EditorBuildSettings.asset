@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/InfoAboutSaving.unity
+    guid: 97bfd0b523c593b40b0c4aab48d75769
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: e9d111b3c1e15754cb0851c8d07325bc
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: ec8545864910e5748bbed6bfa99f1888
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: 03df48dc2b42eb54c8f037ac2051a4ea
+  - enabled: 1
+    path: Assets/Scenes/MenuKeybinds.unity
+    guid: ea2c3b8e1b7f1bc4caaa7eca8ccd6750
+  - enabled: 1
+    path: Assets/Scenes/MenuLoadGame.unity
+    guid: df3b703613effcd44825b5e81a2af2b4
+  - enabled: 1
+    path: Assets/Scenes/Level3.unity
+    guid: f284f626d8d939941907d8b1381a0790
+  - enabled: 1
+    path: Assets/Scenes/TheEnd.unity
+    guid: 45f270c76ce23cc498ce00e342b4c9fb
+  - enabled: 1
+    path: Assets/Scenes/Autosave.unity
+    guid: 58734dacefb518041a18019f7c671b8d
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_UseUCBPForAssetBundles: 0
