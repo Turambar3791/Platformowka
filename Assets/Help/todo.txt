@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 - napisaæ napisy
 - dodaæ mo¿e pomijanie napisów
-=======
--credits
->>>>>>> 19c4d3be1c1c4ac3e12371d217f28f42074150bf
 
 - create better ost???
