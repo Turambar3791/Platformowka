@@ -25,15 +25,21 @@ public class CreditsScroll : MonoBehaviour
     {
         rectTransform.anchoredPosition += Vector2.up * speed * Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)) 
         {
-            isEscPressedOnce = true;
-            textAboutSkip.SetActive(true);
+            if (isEscPressedOnce)
+            {
+                Application.Quit();
+            }
+            else
+            {
+                isEscPressedOnce = true;
+                textAboutSkip.SetActive(true);
+            }
         }
 
-        if ((rectTransform.anchoredPosition.y > endY) || (Input.GetKeyDown(KeyCode.Escape) && isEscPressedOnce))
+        if (rectTransform.anchoredPosition.y > endY)
         {
-            Debug.Log("QUIT");
             Application.Quit();
         }
     }

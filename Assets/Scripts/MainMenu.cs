@@ -23,6 +23,7 @@ public class MainMenu : MonoBehaviour
     public void BtnBack()
     {
         SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1f;
     }
 
     public void BtnStartNewGame(int slot)
